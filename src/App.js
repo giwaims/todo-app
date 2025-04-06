@@ -140,7 +140,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="todo-app">
-        <h1>Todo List</h1>
+        <h1>TaskFlow</h1>
 
         {/* Add task form */}
         <form className="task-form" onSubmit={addTask}>
