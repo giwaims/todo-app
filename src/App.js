@@ -199,10 +199,10 @@ function App() {
                       value={editValue}
                       onChange={(e) => setEditValue(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
+                        if (e.key === "Enter") {
                           e.preventDefault();
                           saveEdit(task.id);
-                        } else if (e.key === 'Escape') {
+                        } else if (e.key === "Escape") {
                           cancelEdit();
                         }
                       }}
