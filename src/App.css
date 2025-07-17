@@ -1,46 +1,53 @@
-/* Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: "Lexend", sans-serif;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Webkit browsers like Chrome, Safari */
+*::-webkit-scrollbar {
+  display: none;
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  color: #fff;
 }
 
-/* App Container */
 .app-container {
   width: 100%;
-  max-width: 550px;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .todo-app {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  background-color: #000;
+  border-radius: 16px;
+  padding: 40px;
   transition: all 0.3s ease;
+  border: 3px solid #fff;
 }
 
-/* Header */
 h1 {
-  color: #3a3a3a;
-  font-size: 28px;
-  margin-bottom: 20px;
+  color: #fff;
+  font-size: 42px;
+  margin-bottom: 30px;
   text-align: center;
   font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
-/* Task Form */
 .task-form {
   display: flex;
   margin-bottom: 20px;
@@ -48,35 +55,36 @@ h1 {
 
 .task-input {
   flex: 1;
-  padding: 12px 15px;
-  font-size: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px 0 0 8px;
+  padding: 16px 20px;
+  font-size: 18px;
+  border: 3px solid #fff;
+  border-radius: 12px 0 0 12px;
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
+  background-color: #000;
+  color: #fff;
 }
 
 .task-input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  border-color: #fff;
 }
 
 .add-button {
-  background-color: #667eea;
-  color: white;
+  background-color: #fff;
+  color: #000;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
+  padding: 16px 30px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 0 8px 8px 0;
-  transition: background-color 0.3s;
+  border-radius: 0 12px 12px 0;
+  transition: all 0.3s;
 }
 
 .add-button:hover {
-  background-color: #5a6fd9;
+  background-color: #333;
 }
 
-/* Filter Controls */
 .filter-controls {
   display: flex;
   justify-content: center;
@@ -88,43 +96,49 @@ h1 {
 .filter-btn,
 .clear-completed-btn {
   background-color: transparent;
-  border: 1px solid #e0e0e0;
-  padding: 8px 12px;
-  border-radius: 6px;
+  border: 3px solid #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   transition: all 0.2s;
+  color: #fff;
 }
 
 .filter-btn:hover,
 .clear-completed-btn:hover {
-  background-color: #f5f5f5;
+  background-color: #fff;
+  color: #000;
 }
 
 .filter-btn.active {
-  background-color: #667eea;
-  color: white;
-  border-color: #667eea;
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
 }
 
 .clear-completed-btn {
   margin-left: auto;
-  color: #888;
+  color: #fff;
 }
 
-/* Task List */
 .task-list {
   list-style-type: none;
   margin-bottom: 15px;
+  counter-reset: task-counter;
 }
 
 .task-item {
-  background-color: #f9f9f9;
+  background-color: #000;
   border-radius: 8px;
   margin-bottom: 10px;
   padding: 15px;
   transition: all 0.2s;
   animation: fadeIn 0.3s;
+  border: 2px solid #fff;
+  counter-increment: task-counter;
+  position: relative;
 }
 
 @keyframes fadeIn {
@@ -139,8 +153,8 @@ h1 {
 }
 
 .task-item:hover {
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #111;
+  border: 2px solid #fff;
 }
 
 .task-item.completed {
@@ -151,12 +165,27 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
 }
 
 .task-details {
   display: flex;
   align-items: center;
   flex: 1;
+  position: relative;
+  padding-left: 35px;
+}
+
+.task-details::before {
+  content: counter(task-counter);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  font-family: 'Lexend', sans-serif;
 }
 
 .task-checkbox {
@@ -168,14 +197,15 @@ h1 {
 
 .task-text {
   font-size: 16px;
-  color: #333;
+  color: #fff;
   flex: 1;
   word-break: break-word;
+  font-family: "Lexend", sans-serif;
 }
 
 .completed .task-text {
   text-decoration: line-through;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .task-actions {
@@ -187,32 +217,34 @@ h1 {
 .delete-btn,
 .save-btn,
 .cancel-btn {
-  border: none;
+  border: 2px solid #fff;
   background-color: transparent;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
   transition: all 0.2s;
+  font-family: "Lexend", sans-serif;
+  color: #fff;
 }
 
 .edit-btn {
-  color: #667eea;
+  color: #fff;
 }
-
 .edit-btn:hover {
-  background-color: rgba(102, 126, 234, 0.1);
+  background-color: #fff;
+  color: #000;
 }
-
 .delete-btn {
-  color: #ef4444;
+  color: #fff;
 }
-
 .delete-btn:hover {
-  background-color: rgba(239, 68, 68, 0.1);
+  background-color: rgba(255, 59, 59, 0.15);
+  color: #fff;
+  border-color: rgba(255, 59, 59, 0.5);
 }
 
-/* Edit Mode */
 .edit-container {
   display: flex;
   flex-direction: column;
@@ -223,14 +255,16 @@ h1 {
 .edit-input {
   padding: 8px 12px;
   font-size: 16px;
-  border: 1px solid #e0e0e0;
+  border: 3px solid #fff;
   border-radius: 6px;
   width: 100%;
   outline: none;
+  background-color: #000;
+  color: #fff;
 }
 
 .edit-input:focus {
-  border-color: #667eea;
+  border-color: #000;
 }
 
 .edit-actions {
@@ -240,63 +274,150 @@ h1 {
 }
 
 .save-btn {
-  background-color: #667eea;
-  color: white;
+  background-color: #000;
+  color: #fff;
 }
 
 .save-btn:hover {
-  background-color: #5a6fd9;
+  background-color: #333;
 }
 
 .cancel-btn {
-  background-color: #f3f4f6;
-  color: #666;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
 }
 
 .cancel-btn:hover {
-  background-color: #e5e7eb;
+  background-color: #f8f8f8;
 }
 
-/* Task Counter */
 .task-counter {
-  color: #888;
+  color: #fff;
   font-size: 14px;
   text-align: center;
   margin-top: 10px;
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
-  color: #888;
+  color: rgba(255, 255, 255, 0.7);
   padding: 20px;
   font-style: italic;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
+/* Large screens */
+@media (min-width: 1200px) {
+  .app-container {
+    max-width: 1000px;
+  }
+
   .todo-app {
-    padding: 20px 15px;
+    padding: 50px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .task-input,
+  .add-button {
+    font-size: 20px;
+    padding: 18px 25px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .app-container {
+    max-width: 90%;
+  }
+
+  .todo-app {
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .todo-app {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .task-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-input,
+  .add-button {
+    border-radius: 10px;
+    width: 100%;
+    padding: 14px 20px;
   }
 
   .task-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 15px;
   }
 
   .task-actions {
     width: 100%;
     justify-content: flex-end;
+    gap: 10px;
   }
 
   .filter-controls {
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .filter-btn,
+  .clear-completed-btn {
+    flex: 1;
+    min-width: 45%;
+    text-align: center;
   }
 
   .clear-completed-btn {
     margin-left: 0;
-    margin-top: 8px;
+    margin-top: 10px;
     width: 100%;
+  }
+
+  .task-item {
+    padding: 15px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  .filter-btn,
+  .clear-completed-btn {
+    min-width: 100%;
+  }
+
+  .task-text {
+    font-size: 16px;
   }
 }
