@@ -7,10 +7,12 @@ This project is a responsive Todo List application built with React. It features
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm (v6 or higher)
 
 ### Installation
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/giwaims/todo-app.git
@@ -47,18 +49,18 @@ This project is a responsive Todo List application built with React. It features
 
 ## Technical Implementation
 
- Core Technologies
+Core Technologies
 
 - React: Frontend library for building the user interface
 - React Hooks: For state management (useState, useEffect)
 - localStorage API: For persistent data storage
 - CSS3: For styling with animations and responsive design
 
- Component Structure
+Component Structure
 
 The entire application is contained within the `App` component. While this approach works well for a smaller application, the code could be refactored into smaller components for larger applications.
 
- State Management
+State Management
 
 The application uses React's useState hook to manage several pieces of state:
 
@@ -68,7 +70,7 @@ The application uses React's useState hook to manage several pieces of state:
 - `editValue`: String for the edit input field
 - `filter`: String representing the current filter ('all', 'active', 'completed')
 
- Data Persistence
+Data Persistence
 
 The app uses localStorage to persist tasks between page reloads:
 
@@ -76,7 +78,7 @@ The app uses localStorage to persist tasks between page reloads:
 2. Saving Data: Whenever the tasks state changes, it's saved to localStorage
 3. Error Handling: Try/catch blocks prevent crashes if localStorage operations fail
 
- Task Object Structure
+Task Object Structure
 
 Each task is represented as an object with the following properties:
 
@@ -89,41 +91,41 @@ Each task is represented as an object with the following properties:
 }
 ```
 
- Code Documentation
+Code Documentation
 
- State Initialization
+State Initialization
 
 ```javascript
 // Initialize tasks state from localStorage or empty array
 const [tasks, setTasks] = useState(() => {
   try {
-    const savedTasks = localStorage.getItem('todoTasks');
+    const savedTasks = localStorage.getItem("todoTasks");
     if (savedTasks) {
       return JSON.parse(savedTasks);
     }
   } catch (error) {
-    console.error('Failed to load tasks from localStorage:', error);
+    console.error("Failed to load tasks from localStorage:", error);
   }
   return [];
 });
 ```
 
- Local Storage Persistence
+Local Storage Persistence
 
 ```javascript
 // Save tasks to localStorage whenever tasks change
 useEffect(() => {
   try {
-    localStorage.setItem('todoTasks', JSON.stringify(tasks));
+    localStorage.setItem("todoTasks", JSON.stringify(tasks));
   } catch (error) {
-    console.error('Failed to save tasks to localStorage:', error);
+    console.error("Failed to save tasks to localStorage:", error);
   }
 }, [tasks]);
 ```
 
- Task Management Functions
+Task Management Functions
 
- Adding Tasks
+Adding Tasks
 
 ```javascript
 const addTask = (e) => {
@@ -133,33 +135,35 @@ const addTask = (e) => {
       id: Date.now(),
       text: inputValue,
       completed: false,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
     setTasks([...tasks, newTask]);
-    setInputValue('');
+    setInputValue("");
   }
 };
 ```
 
- Deleting Tasks
+Deleting Tasks
 
 ```javascript
 const deleteTask = (id) => {
-  setTasks(tasks.filter(task => task.id !== id));
+  setTasks(tasks.filter((task) => task.id !== id));
 };
 ```
 
- Toggling Task Completion
+Toggling Task Completion
 
 ```javascript
 const toggleComplete = (id) => {
-  setTasks(tasks.map(task => 
-    task.id === id ? { ...task, completed: !task.completed } : task
-  ));
+  setTasks(
+    tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    )
+  );
 };
 ```
 
- Editing Tasks
+Editing Tasks
 
 ```javascript
 // Start editing a task
@@ -171,40 +175,42 @@ const startEdit = (task) => {
 // Save edited task
 const saveEdit = (id) => {
   if (editValue.trim()) {
-    setTasks(tasks.map(task => 
-      task.id === id ? { ...task, text: editValue } : task
-    ));
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: editValue } : task
+      )
+    );
     setEditingId(null);
-    setEditValue('');
+    setEditValue("");
   }
 };
 
 // Cancel editing
 const cancelEdit = () => {
   setEditingId(null);
-  setEditValue('');
+  setEditValue("");
 };
 ```
 
- Filtering and Clearing Tasks
+Filtering and Clearing Tasks
 
 ```javascript
 // Filter tasks based on current filter
-const filteredTasks = tasks.filter(task => {
-  if (filter === 'active') return !task.completed;
-  if (filter === 'completed') return task.completed;
+const filteredTasks = tasks.filter((task) => {
+  if (filter === "active") return !task.completed;
+  if (filter === "completed") return task.completed;
   return true; // 'all' filter
 });
 
 // Clear all completed tasks
 const clearCompleted = () => {
-  setTasks(tasks.filter(task => !task.completed));
+  setTasks(tasks.filter((task) => !task.completed));
 };
 ```
 
- UI Components
+UI Components
 
- Form Component
+Form Component
 
 ```jsx
 <form className="task-form" onSubmit={addTask}>
@@ -215,42 +221,41 @@ const clearCompleted = () => {
     value={inputValue}
     onChange={(e) => setInputValue(e.target.value)}
   />
-  <button type="submit" className="add-button">Add</button>
+  <button type="submit" className="add-button">
+    Add
+  </button>
 </form>
 ```
 
- Filter Controls
+Filter Controls
 
 ```jsx
 <div className="filter-controls">
-  <button 
-    className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-    onClick={() => setFilter('all')}
+  <button
+    className={`filter-btn ${filter === "all" ? "active" : ""}`}
+    onClick={() => setFilter("all")}
   >
     All
   </button>
-  <button 
-    className={`filter-btn ${filter === 'active' ? 'active' : ''}`}
-    onClick={() => setFilter('active')}
+  <button
+    className={`filter-btn ${filter === "active" ? "active" : ""}`}
+    onClick={() => setFilter("active")}
   >
     Active
   </button>
-  <button 
-    className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
-    onClick={() => setFilter('completed')}
+  <button
+    className={`filter-btn ${filter === "completed" ? "active" : ""}`}
+    onClick={() => setFilter("completed")}
   >
     Completed
   </button>
-  <button 
-    className="clear-completed-btn"
-    onClick={clearCompleted}
-  >
+  <button className="clear-completed-btn" onClick={clearCompleted}>
     Clear Completed
   </button>
 </div>
 ```
 
- Task List Component
+Task List Component
 
 The task list component renders either an empty state message or a list of task items:
 
@@ -259,8 +264,11 @@ The task list component renders either an empty state message or a list of task 
   {filteredTasks.length === 0 ? (
     <li className="empty-state">No tasks to show</li>
   ) : (
-    filteredTasks.map(task => (
-      <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+    filteredTasks.map((task) => (
+      <li
+        key={task.id}
+        className={`task-item ${task.completed ? "completed" : ""}`}
+      >
         {/ Task content or edit form /}
       </li>
     ))
@@ -268,7 +276,7 @@ The task list component renders either an empty state message or a list of task 
 </ul>
 ```
 
- CSS Structure
+CSS Structure
 
 The CSS is organized by component and follows a mobile-first approach:
 
@@ -306,17 +314,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* Create React App for the initial project setup
-* React community for the excellent documentation and resources
-* Contributors who have helped improve this project
+- Create React App for the initial project setup
+- React community for the excellent documentation and resources
+- Contributors who have helped improve this project
 
- Extending the Project
+Extending the Project
 
 Here are some potential ways to extend this project:
 
 1. Component Refactoring: Break down App.js into smaller components
 2. State Management: Add Redux or Context API for more complex state needs
-3. Additional Features: 
+3. Additional Features:
    - Due dates for tasks
    - Priority levels
    - Categories/tags
@@ -325,11 +333,12 @@ Here are some potential ways to extend this project:
 4. Testing: Add unit and integration tests
 5. Accessibility: Improve keyboard navigation and screen reader support
 
- Troubleshooting
+Troubleshooting
 
- Common Issues
+Common Issues
 
-1. Tasks not persisting: 
+1. Tasks not persisting:
+
    - Check if localStorage is enabled
    - Make sure you're not in private/incognito mode
    - Check console for errors
@@ -339,6 +348,6 @@ Here are some potential ways to extend this project:
    - Check browser compatibility
    - Test on different screen sizes
 
- Conclusion
+Conclusion
 
 This Todo List application demonstrates core React concepts including state management, effect hooks, conditional rendering, and event handling. The implementation includes both functional features and an aesthetically pleasing UI that works across devices.
