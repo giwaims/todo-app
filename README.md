@@ -1,19 +1,51 @@
- Todo List App Documentation
+# Todo List App
 
- Project Overview
+## Project Overview
 
 This project is a responsive Todo List application built with React. It features a clean, modern UI with core task management functionality and persistent storage using the browser's localStorage API.
 
- Features
+## Getting Started
 
-- Task Management: Add, edit, and delete tasks
-- Task Status: Mark tasks as complete or incomplete
-- Task Filtering: Filter tasks by All, Active, or Completed status
-- Batch Actions: Clear all completed tasks at once
-- Persistent Storage: Tasks are saved to localStorage and persist between page refreshes
-- Responsive Design: Works seamlessly across desktop and mobile devices
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
- Technical Implementation
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/giwaims/todo-app.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd todo-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+   The application will open in your default browser at `http://localhost:3000`.
+
+#### Features
+
+- **Task Management:** Add, edit, and delete tasks
+- **Task Status:** Mark tasks as complete or incomplete
+- **Task Filtering:** Filter tasks by All, Active, or Completed status
+- **Batch Actions:** Clear all completed tasks at once
+- **Persistent Storage:** Tasks are saved to localStorage and persist between page refreshes
+- **Responsive Design:** Works seamlessly across desktop and mobile devices
+
+## Available Scripts
+
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner in interactive watch mode
+- `npm run build` - Builds the app for production to the `build` folder
+- `npm run eject` - Removes the single build dependency from your project
+
+## Technical Implementation
 
  Core Technologies
 
@@ -259,6 +291,24 @@ Key design elements include:
 - Responsive layout adjustments
 - Visual feedback on hover and active states
 - Color-coding for different actions
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+* Create React App for the initial project setup
+* React community for the excellent documentation and resources
+* Contributors who have helped improve this project
 
  Extending the Project
 
